@@ -1,0 +1,20 @@
+# This is now is a layer 4 proxy
+stream {
+
+        # Here you can create an upstream and use it inside your configuraions, allbackend here is the name of the upstream
+        upstream allbackend {
+                server localhost:8081;
+                server localhost:8082;
+                server localhost:8083;
+                server localhost:8084;
+                server localhost:8085;
+        }
+
+        # This is the web server block directive and here you can define a web server
+        server {
+                listen 80;
+                proxy_pass allbackend;
+        }
+}
+
+events { } # This is a events block directive and nginx forces you to define it

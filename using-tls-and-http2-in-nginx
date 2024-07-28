@@ -1,0 +1,37 @@
+http { 
+	
+	upstream allbackend {
+		server localhost:8081;
+		server localhost:8082;
+		server localhost:8083;
+		server localhost:8084;
+		server localhost:8085;
+	}
+
+	server {
+		listen 80;
+		# Listening on HTTPS port which is 443
+		# You can enable https by doing this
+		listen 443 ssl http2; 
+
+		# The path for your public key
+		ssl_certificate /etc/letsencrypt/live/nginxtest.ddns.net/fullchain.pem;
+		# The path for your private key
+		ssl_certificate_key /etc/letsencrypt/live/nginx.ddns.net/privkey.pem;
+		# You can enable tls 1.3 and manage tls versions by doing this
+		ssl_protocols TLSv1.3;
+		
+		location / {
+			proxy_pass http://allbackend/;
+		}		
+		
+
+		location /admin {
+			return 403;
+		}
+	}
+
+
+}
+
+events { } # This is a events block directive and nginx forces you to define it

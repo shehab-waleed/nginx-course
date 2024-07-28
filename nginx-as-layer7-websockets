@@ -1,0 +1,28 @@
+http {
+
+        upstream websocketBackend {
+                server localhost:8000;
+        }
+
+        server {
+                listen 80;
+
+
+                location /chat {
+                        proxy_pass http://websocketBackend/;
+                        proxy_http_version 1.1; # Here you define the version of the HTTP protocol
+                        proxy_set_header Upgrade $http_upgrade; # Here you set the header of upgrading the HTTP protocol to websocket
+                        proxy_set_header Connection "Upgrade"; # Here you set the connection to be Upgrade
+                        proxy_set_header Host $host; # Here you set the host to be the current host
+                }
+
+
+                location /admin {
+                        return 403;
+                }
+        }
+
+
+}
+
+events { } # This is a events block directive and nginx forces you to define it

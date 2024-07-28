@@ -1,0 +1,109 @@
+version: '3.4'
+
+
+services:
+  ng1:
+    image: nginx
+    hostname: nginx1
+    ports:
+      - 8090:8080
+    networks:
+      - nginx1_network
+    volumes:
+      - /home/shehab/Desktop/nginx-course/nginx1.conf:/etc/nginx/nginx.conf
+
+  ng2:
+    image: nginx
+    hostname: nginx2
+    ports:
+      - 8070:8080
+    networks:
+      - nginx2_network
+    volumes:
+      - /home/shehab/Desktop/nginx-course/nginx2.conf:/etc/nginx/nginx.conf
+
+  nodeapp1:
+    image: node-app
+    hostname: nodeapp1
+    build:
+      context: .
+    networks:
+      - nginx1_network
+  
+  nodeapp2:
+    image: node-app
+    hostname: nodeapp2
+    build:
+      context: .
+    networks:
+      - nginx1_network
+
+  nodeapp3:
+    image: node-app
+    hostname: nodeapp3
+    build: 
+      context: .
+    networks:
+      - nginx1_network
+
+  nodeapp4:
+    image: node-app
+    hostname: nodeapp4
+    build: 
+      context: .
+    networks:
+      - nginx1_network
+
+  nodeapp5:
+    image: node-app
+    hostname: nodeapp5
+    build: 
+      context: .
+    networks:
+      - nginx1_network
+
+  nodeapp6:
+    image: node-app
+    hostname: nodeapp6
+    build: 
+      context: .
+    networks:
+      - nginx2_network
+
+  nodeapp7:
+    image: node-app
+    hostname: nodeapp7
+    build: 
+      context: .
+    networks:
+      - nginx2_network
+
+  nodeapp8:
+    image: node-app
+    hostname: nodeapp8
+    build: 
+      context: .
+    networks:
+      - nginx2_network
+
+  nodeapp9:
+    image: node-app
+    hostname: nodeapp9
+    build: 
+      context: .
+    networks:
+      - nginx2_network
+
+  nodeapp10:
+    image: node-app
+    hostname: nodeapp10
+    build: 
+      context: .
+    networks:
+      - nginx2_network
+
+networks:
+  nginx1_network:
+    driver: bridge
+  nginx2_network:
+    driver: bridge

@@ -1,0 +1,44 @@
+version: '3.4'
+
+
+services:
+  nodeapp1:
+    image: node-app
+    ports:
+      - 8081:8080
+    hostname: nodeapp1
+    build:
+      context: .
+  
+  nodeapp2:
+    image: node-app
+    ports:
+      - 8082:8080
+    hostname: nodeapp2
+    build:
+      context: .
+
+  nodeapp3:
+    image: node-app
+    ports:
+      - 8083:8080
+    hostname: nodeapp3
+    build: 
+      context: .
+
+  nodeapp4:
+    image: node-app
+    ports:
+      - 8084:8080
+    hostname: nodeapp4
+    build: 
+      context: .
+
+  nodeapp5:
+    image: node-app
+    ports:
+      - 8085:8080
+    hostname: nodeapp5
+    build: 
+      context: .
+
